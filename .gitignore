@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+*.log
+
+# Env / system
+.env
+.venv/
+venv/
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build / cache
+dist/
+build/
+.cache/
+
+# ML/Audio artefakty
+models/
+data/processed/
+silence.wav
+
+# Streamlit
+.streamlit/
+
+# IDE
+.vscode/
