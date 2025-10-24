@@ -1,6 +1,11 @@
-# src/train_baseline.py
+# scripts/train_baseline.py
 from pathlib import Path
-import numpy as np, joblib
+import sys
+# dopisz katalog projektu do sys.path
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+
+import numpy as np
+import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression

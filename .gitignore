@@ -31,3 +31,5 @@ silence.wav
 
 # IDE
 .vscode/
+downloads/
+data/raw/
