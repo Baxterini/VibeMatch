@@ -4,15 +4,18 @@ import sys
 # dopisz katalog projektu do sys.path
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
-import numpy as np
-import joblib
-from sklearn.model_selection import train_test_split
+# scripts/train_baseline.py
+from pathlib import Path
+import sys
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+
+import numpy as np, joblib
+from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 from sklearn.pipeline import Pipeline
 from src.features import extract_features
 
-# Załóżmy strukturę: data/raw/<label>/*.wav
 RAW = Path("data/raw")
 X, y = [], []
 for label_dir in RAW.iterdir():
@@ -22,18 +25,33 @@ for label_dir in RAW.iterdir():
             X.append(extract_features(str(f)))
             y.append(label)
 
+if not X:
+    raise SystemExit("Brak plików w data/raw/<klasa>/*.wav")
+
 X = np.array(X); y = np.array(y)
 
-Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
+Xtr, Xte, ytr, yte = train_test_split(
+    X, y, test_size=0.2, stratify=y, random_state=42
+)
 
 pipe = Pipeline([
     ("scaler", StandardScaler()),
-    ("clf", LogisticRegression(max_iter=2000, n_jobs=None))
+    ("clf", SVC(kernel="rbf", probability=True))
 ])
 
-pipe.fit(Xtr, ytr)
-acc = pipe.score(Xte, yte)
-print("Baseline accuracy:", round(acc, 4))
+param_grid = {
+    "clf__C":   [1, 3, 10],
+    "clf__gamma": ["scale", 0.01, 0.001]
+}
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+gs = GridSearchCV(pipe, param_grid, cv=cv, n_jobs=-1, verbose=0)
+gs.fit(Xtr, ytr)
+
+acc_tr = gs.best_score_
+acc_te = gs.score(Xte, yte)
+print(f"Best CV acc: {acc_tr:.4f}  |  Test acc: {acc_te:.4f}")
+print("Best params:", gs.best_params_)
 
 Path("models").mkdir(exist_ok=True)
-joblib.dump(pipe, "models/baseline_logreg.joblib")
+joblib.dump(gs.best_estimator_, "models/baseline_logreg.joblib")  # zostawiamy tę samą ścieżkę
+print("Zapisano: models/baseline_logreg.joblib")
