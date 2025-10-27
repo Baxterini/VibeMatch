@@ -1,0 +1,39 @@
+{
+  "outer_cv": {
+    "acc_mean": 0.6609300040933279,
+    "acc_std": 0.052126482852581986,
+    "f1_macro_mean": 0.6138062046712868,
+    "f1_macro_std": 0.05163665826762612,
+    "best_params_each_fold": [
+      {
+        "clf__C": 30,
+        "clf__gamma": 0.001
+      },
+      {
+        "clf__C": 10,
+        "clf__gamma": 0.001
+      },
+      {
+        "clf__C": 10,
+        "clf__gamma": 0.0003
+      },
+      {
+        "clf__C": 30,
+        "clf__gamma": 0.001
+      },
+      {
+        "clf__C": 30,
+        "clf__gamma": 0.001
+      }
+    ]
+  },
+  "refit_params": {
+    "clf__C": 30,
+    "clf__gamma": 0.001
+  },
+  "segmentation": {
+    "sr": 22050,
+    "seg_seconds": 10.0,
+    "hop_seconds": 5.0
+  }
+}
