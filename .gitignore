@@ -21,15 +21,17 @@ dist/
 build/
 .cache/
 
-# ML/Audio artefakty
+# ML/Audio artefakty (NIE ignoruj data/gtzan/)
 models/
 data/processed/
 silence.wav
+data/raw/
 
 # Streamlit
 .streamlit/
 
 # IDE
 .vscode/
+
+# Duże źródła — trzymamy poza repo
 downloads/
-data/raw/
