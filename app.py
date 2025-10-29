@@ -118,6 +118,37 @@ ul[role="listbox"] [aria-selected="true"] {
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+/* 1) Panel listy rozwijanej (BaseWeb Select) – tło + tekst + stany */
+[role="listbox"], [role="listbox"] * {
+  background:#0f1116 !important;
+  color:#ffffff !important;
+}
+[role="option"]:hover {
+  background: rgba(255,255,255,0.12) !important;
+}
+[role="option"][aria-selected="true"] {
+  background: rgba(255,255,255,0.18) !important;
+}
+
+/* 2) Dropzone uploadu – jaśniejszy tekst, pełna widoczność */
+[data-testid="stFileUploader"], 
+[data-testid="stFileUploader"] * {
+  color:#ffffff !important;
+}
+[data-testid="stFileUploaderDropzone"] {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.35) !important;
+}
+[data-testid="stFileUploaderDropzone"] * {
+  color:#ffffff !important;
+  opacity: 1 !important;  /* usuwa „wyblaknięcie” napisu w dropzone */
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 # --- VIBE FIRST: mood -> demo utwór + natychmiastowe tło ---
 GTZAN_CLASSES = ["blues","classical","country","disco","hiphop","jazz","metal","pop","reggae","rock"]
 
