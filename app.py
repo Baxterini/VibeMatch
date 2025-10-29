@@ -32,6 +32,33 @@ def save_feedback(row: dict) -> None:
     else:
         df.to_csv(FEEDBACK_PATH, index=False, encoding="utf-8")
 
+# ---- MODEL LOADER ----
+
+import joblib
+
+MODEL_CANDIDATES = [
+    "models/segmented_v2_svc.joblib",
+    "models/baseline_svc.joblib",
+]
+
+model = None
+for p in MODEL_CANDIDATES:
+    if Path(p).exists():
+        model = joblib.load(p)
+        break
+
+if model is None:
+    st.error("Nie znaleziono modelu. Uruchom trening: python src/scripts/train_segmented_v2.py")
+    st.stop()
+
+# (opcjonalnie) drobna informacja o modelu
+try:
+    _est = getattr(model, 'steps', [[model]])[-1][-1] if hasattr(model, 'steps') else model
+    st.caption(f"✅ Model załadowany: **{type(_est).__name__}**")
+except Exception:
+    pass
+
+
 # --- UI base ---
 apply_dark_base()
 st.title("🎧 VibeMatch — Audio Analyzer")

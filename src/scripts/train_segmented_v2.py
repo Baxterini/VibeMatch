@@ -13,6 +13,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, f1_score
 
+
 # Upewnij się, że widzimy repo root (jeśli chcesz korzystać z modułów z src/)
 sys.path.append(str(Path(__file__).resolve().parents[2]))
 
@@ -111,6 +112,9 @@ if len(X) == 0:
 print(f"Utworów: {file_count} | Segmentów: {len(X)} | Cecha dim: {X.shape[1]}")
 
 # --- Pipeline: scaler -> PCA(95%, whiten) -> SVC(RBF, balanced) ---
+
+
+
 pipe = Pipeline([
     ("scaler", StandardScaler()),
     ("pca", PCA(n_components=0.95, whiten=True, random_state=0)),
@@ -185,3 +189,4 @@ with open(REPORT_OUT, "w", encoding="utf-8") as f:
         }
     }, f, ensure_ascii=False, indent=2)
 print(f"📝 Raport: {REPORT_OUT}")
+
