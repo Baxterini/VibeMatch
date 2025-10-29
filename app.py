@@ -232,6 +232,44 @@ a[kind="secondary"]:hover {
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+/* --- Select: wymuś ciemny panel także dla wewnętrznych wrapperów --- */
+.stApp div[data-baseweb="popover"] { 
+  background: transparent !important;
+  border: none !important;
+}
+.stApp div[data-baseweb="popover"] > div,
+.stApp div[data-baseweb="popover"] [data-baseweb="menu"],
+.stApp div[data-baseweb="popover"] [role="listbox"] {
+  background: #0f1116 !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45) !important;
+}
+
+/* opcje */
+.stApp div[data-baseweb="popover"] [role="option"] { 
+  color: #fff !important; 
+}
+.stApp div[data-baseweb="popover"] [role="option"]:hover {
+  background: rgba(255,255,255,0.12) !important;
+}
+.stApp div[data-baseweb="popover"] [aria-selected="true"] {
+  background: rgba(255,255,255,0.18) !important;
+}
+
+/* upewnij się, że „Browse files” zostaje ciemny */
+[data-testid="stFileUploader"] button,
+[data-testid="stFileUploader"] [data-baseweb="button"] {
+  color:#fff !important;
+  background:rgba(255,255,255,0.10) !important;
+  border:1px solid rgba(255,255,255,0.35) !important;
+  border-radius:10px !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
 
 
