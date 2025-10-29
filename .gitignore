@@ -38,6 +38,7 @@ downloads/
 
 .env
 
-# Track only model binaries in models/
-models/*
+# --- allow joblibs in models ---
+!models/
 !models/*.joblib
+!models/**/*.joblib
