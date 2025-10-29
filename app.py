@@ -148,6 +148,37 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+/* 1) PANEL ROZWIJANEJ LISTY (BaseWeb / portal) */
+div[data-baseweb="popover"],
+div[data-baseweb="menu"],
+div[role="listbox"] {
+  background:#0f1116 !important;
+  color:#fff !important;
+  border:1px solid rgba(255,255,255,0.25) !important;
+}
+div[role="listbox"] [role="option"] { color:#fff !important; }
+div[role="listbox"] [role="option"]:hover { background:rgba(255,255,255,0.12) !important; }
+div[role="listbox"] [aria-selected="true"] { background:rgba(255,255,255,0.18) !important; }
+
+/* 2) PRZYCISK "Browse files" w uploaderze */
+[data-testid="stFileUploader"] button,
+[data-testid="stFileUploader"] [data-baseweb="button"] {
+  color:#fff !important;
+  background:rgba(255,255,255,0.10) !important;
+  border:1px solid rgba(255,255,255,0.35) !important;
+}
+
+/* (opcjonalnie) zaokrąglenie i lekki cień dla listy */
+div[data-baseweb="popover"], div[role="listbox"] {
+  border-radius:12px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45) !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 
 # --- VIBE FIRST: mood -> demo utwór + natychmiastowe tło ---
 GTZAN_CLASSES = ["blues","classical","country","disco","hiphop","jazz","metal","pop","reggae","rock"]
