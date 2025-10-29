@@ -67,10 +67,56 @@ st.caption("Wrzuć krótki fragment muzyki (WAV/MP3/OGG), a powiem Ci, jaki to k
 
 st.markdown("""
 <style>
-html, body, [class*="css"], h1,h2,h3,h4,h5,h6,p,span,div,label { color: white !important; }
+/* global text */
+html, body, [class*="css"], h1,h2,h3,h4,h5,h6,p,span,div,label { color:#fff !important; }
+
+/* labels */
+.stSelectbox label, .stTextInput label, .stFileUploader label { color:#fff !important; }
+
+/* text inputs */
+input, textarea {
+  color:#fff !important;
+  background: rgba(255,255,255,0.06) !important;
+  border-color: rgba(255,255,255,0.25) !important;
+}
+input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.75) !important; }
+
+/* selectbox pole (zamknięte) */
+div[data-baseweb="select"] > div {
+  color:#fff !important;
+  background: rgba(255,255,255,0.06) !important;
+  border-color: rgba(255,255,255,0.25) !important;
+}
+
+/* selectbox placeholder */
+div[data-baseweb="select"] div[role="button"] * { color:#fff !important; }
+div[data-baseweb="select"] input { color:#fff !important; }
+
+/* lista rozwijana selecta */
+ul[role="listbox"], div[role="listbox"] {
+  background: #111419 !important;
+  color:#fff !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+}
+ul[role="listbox"] [role="option"], div[role="listbox"] [role="option"] {
+  color:#fff !important;
+}
+ul[role="listbox"] [aria-selected="true"] {
+  background: rgba(255,255,255,0.12) !important;
+}
+
+/* przyciski */
+.stButton button {
+  color:#fff !important;
+  background: rgba(255,255,255,0.10) !important;
+  border: 1px solid rgba(255,255,255,0.35) !important;
+}
+
+/* metric + uploader */
+[data-testid="stMetricLabel"], [data-testid="stMetricValue"] { color:#fff !important; }
+[data-testid="stFileUploader"] * { color:#fff !important; }
 </style>
 """, unsafe_allow_html=True)
-
 
 # --- VIBE FIRST: mood -> demo utwór + natychmiastowe tło ---
 GTZAN_CLASSES = ["blues","classical","country","disco","hiphop","jazz","metal","pop","reggae","rock"]
