@@ -65,6 +65,13 @@ apply_dark_base()
 st.title("🎧 VibeMatch — Audio Analyzer")
 st.caption("Wrzuć krótki fragment muzyki (WAV/MP3/OGG), a powiem Ci, jaki to klimat.")
 
+st.markdown("""
+<style>
+html, body, [class*="css"], h1,h2,h3,h4,h5,h6,p,span,div,label { color: white !important; }
+</style>
+""", unsafe_allow_html=True)
+
+
 # --- VIBE FIRST: mood -> demo utwór + natychmiastowe tło ---
 GTZAN_CLASSES = ["blues","classical","country","disco","hiphop","jazz","metal","pop","reggae","rock"]
 
