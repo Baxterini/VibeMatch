@@ -271,6 +271,44 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+/* --- POPRAWKA: dropdown BaseWeb w portalu --- */
+.stApp div[data-baseweb="layer"],
+.stApp div[data-baseweb="portal"],
+.stApp div[data-baseweb="popover"] {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Kontener listy opcji */
+.stApp div[role="listbox"], 
+.stApp ul[role="listbox"] {
+  background: #0f1116 !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45) !important;
+}
+
+/* Pozycje listy */
+.stApp [role="listbox"] [role="option"] { 
+  color: #fff !important; 
+  background: transparent !important;
+}
+.stApp [role="listbox"] [role="option"]:hover {
+  background: rgba(255,255,255,0.12) !important;
+}
+.stApp [role="listbox"] [aria-selected="true"] {
+  background: rgba(255,255,255,0.18) !important;
+}
+
+/* Zdarza się biały „sheet” zanim załadują się opcje — zbijamy go na ciemno */
+.stApp div[data-baseweb="layer"] * {
+  color: #fff !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
 
 # --- VIBE FIRST: mood -> demo utwór + natychmiastowe tło ---
