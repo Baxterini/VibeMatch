@@ -14,7 +14,8 @@ import urllib.parse as _url
 import re, difflib
 
 from vibematch.ui import apply_dark_base, apply_mood_background, render_equalizer
-from vibematch.core import load_model, predict_genre, map_genre_to_mood
+from vibematch.core import predict_genre, map_genre_to_mood
+
 
 # --- Feedback helpers ---
 FEEDBACK_PATH = Path("data/feedback.csv")
@@ -257,16 +258,17 @@ st.divider()
 audio_file = st.file_uploader("Wrzuć plik audio", type=["wav", "mp3", "ogg"])
 
 # --- Model info ---
-try:
-    model = load_model()
-    if model is None:
-        st.warning("Nie znaleziono modelu **models/baseline_svc.joblib**. "
-                   "Uruchom trening: `python src/scripts/train_baseline.py`.")
-    else:
-        name = type(getattr(model, 'steps', [[model]])[-1][-1]).__name__ if hasattr(model, 'steps') else type(model).__name__
-        st.caption(f"✅ Model załadowany: **{name}**")
-except Exception as e:
-    st.error(f"Problem z załadowaniem modelu: {e}")
+if model is None:
+    st.warning("Nie znaleziono modelu. Dodaj plik do folderu `models/` (np. segmented_v2_svc.joblib) i zrób push.")
+else:
+    try:
+        _est = getattr(model, 'steps', [[model]])[-1][-1] if hasattr(model, 'steps') else model
+        model_name = type(_est).__name__
+    except Exception:
+        model_name = str(type(model))
+    st.caption(f"✅ Model załadowany: **{model_name}**")
+    st.session_state["model_name"] = model_name
+
 
 # --- Inference ---
 if audio_file:
