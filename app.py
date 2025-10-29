@@ -178,6 +178,61 @@ div[data-baseweb="popover"], div[role="listbox"] {
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+/* --- 1) Lista rozwijana Select (ciemny panel + czytelne opcje) --- */
+div[data-baseweb="popover"],
+div[data-baseweb="menu"],
+div[role="listbox"] {
+  background:#0f1116 !important;
+  border:1px solid rgba(255,255,255,0.25) !important;
+  color:#fff !important;
+}
+div[role="listbox"] * { color:#fff !important; }
+div[role="listbox"] [role="option"]:hover {
+  background:rgba(255,255,255,0.12) !important;
+}
+div[role="listbox"] [aria-selected="true"] {
+  background:rgba(255,255,255,0.18) !important;
+}
+div[data-baseweb="popover"], div[role="listbox"] {
+  border-radius:12px !important;
+  box-shadow:0 8px 24px rgba(0,0,0,0.45) !important;
+}
+
+/* --- 2) Link buttons (Spotify / YouTube) – wygląd jak dark button --- */
+[data-testid="stLinkButton"] a,
+.stLinkButton > a,
+a[kind="secondary"] {
+  display:inline-flex !important;
+  align-items:center;
+  gap:.5rem;
+  color:#fff !important;
+  background:rgba(255,255,255,0.10) !important;
+  border:1px solid rgba(255,255,255,0.35) !important;
+  padding:.5rem .9rem;
+  border-radius:10px;
+  text-decoration:none !important;
+}
+[data-testid="stLinkButton"] a:hover,
+.stLinkButton > a:hover,
+a[kind="secondary"]:hover {
+  background:rgba(255,255,255,0.18) !important;
+  border-color:rgba(255,255,255,0.55) !important;
+}
+
+/* Opcjonalnie: przycisk uploader’a (jeśli nadal jasny) */
+[data-testid="stFileUploader"] button,
+[data-testid="stFileUploader"] [data-baseweb="button"] {
+  color:#fff !important;
+  background:rgba(255,255,255,0.10) !important;
+  border:1px solid rgba(255,255,255,0.35) !important;
+  border-radius:10px !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 
 
 # --- VIBE FIRST: mood -> demo utwór + natychmiastowe tło ---
